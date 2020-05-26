@@ -9,6 +9,7 @@
 <script src="../common/jquery/jquery-3.5.1.js"></script>
 <script>
 $(function(){
+	
 	$('#searchBtn').click(function(){
 		$.ajax({
 			url : "../NaverSearchAPI.do",
@@ -23,6 +24,7 @@ $(function(){
 			error : errFunc
 		});
 	});
+	
 	$('#startNum').change(function(){
 		$.ajax({
 			url : "../NaverSearchAPI.do",
@@ -30,7 +32,7 @@ $(function(){
 			data : {
 				keyword : $('#keyword').val(),
 				startNum : $('#startNum option:selected').val(),
-				display : "5"
+				display : 20 //"20"둘중 뭘써도 상관없음
 			},
 			dataType : "json",
 			success : sucFuncJson,
@@ -46,6 +48,7 @@ function sucFuncJson(d) {
 	
 	$.each(d.items, function(index, item){
 		str += "<ul>";
+		str += "<li>"+ (index+1) +"</li>";
 		str += "<li>"+item.title+"</li>";
 		str += "<li>"+item.description+"</li>";
 		str += "<li>"+item.bloggername+"</li>";
